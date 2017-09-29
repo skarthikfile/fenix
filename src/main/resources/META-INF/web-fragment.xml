@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+
+    Copyright © 2002 Instituto Superior Técnico
+
+    This file is part of FenixEdu Academic.
+
+    FenixEdu Academic is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Lesser General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    FenixEdu Academic is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Lesser General Public License for more details.
+
+    You should have received a copy of the GNU Lesser General Public License
+    along with FenixEdu Academic.  If not, see <http://www.gnu.org/licenses/>.
+
+-->
+<web-fragment xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-fragment_3_0.xsd"
+    version="3.0">
+    <name>${artifactId}</name>
+    <description>${name}</description>
+
+    <ordering>
+		<after>
+			<name>bennu-renderers</name>
+		</after>
+	</ordering>
+	
+	<distributable/>
+	<locale-encoding-mapping-list>
+		<locale-encoding-mapping>
+			<locale>pt</locale>
+			<encoding>UTF-8</encoding>
+		</locale-encoding-mapping>
+		<locale-encoding-mapping>
+			<locale>en</locale>
+			<encoding>UTF-8</encoding>
+		</locale-encoding-mapping>
+	</locale-encoding-mapping-list>
+
+   	<context-param>
+		<param-name>javax.faces.STATE_SAVING_METHOD</param-name>
+		<param-value>client</param-value>
+	</context-param>
+	
+	<!-- Filter -->
+	<filter>
+		<filter-name>ProcessCandidacyPrintAllDocumentsFilter</filter-name>
+		<filter-class>org.fenixedu.academic.servlet.ProcessCandidacyPrintAllDocumentsFilter</filter-class>
+	</filter>
+	<!-- Filter Mapping -->
+	<filter-mapping>
+		<filter-name>ProcessCandidacyPrintAllDocumentsFilter</filter-name>
+		<url-pattern>/student/firstTimeCandidacyDocuments.do</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>ProcessCandidacyPrintAllDocumentsFilter</filter-name>
+		<url-pattern>/publico/*</url-pattern>
+	</filter-mapping>
+    <filter-mapping>
+        <filter-name>RequestChecksumFilter</filter-name>
+        <url-pattern>*.faces</url-pattern>
+    </filter-mapping>
+
+	<session-config>
+			<session-timeout>120</session-timeout>
+	</session-config>
+
+    <error-page>
+        <error-code>404</error-code>
+        <location>/notFound.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>403</error-code>
+        <location>/unauthorized.jsp</location>
+    </error-page>
+
+</web-fragment>
