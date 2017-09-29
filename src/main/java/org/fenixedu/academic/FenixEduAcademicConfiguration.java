@@ -39,12 +39,12 @@ public class FenixEduAcademicConfiguration {
         public Boolean getCIISTSMSShouldRun();
 
         @ConfigurationProperty(key = "generic.application.email.confirmation.link",
-                defaultValue = "http://localhost:8080/fenix/publico/genericApplications.do?method=confirmEmail&confirmationCode=")
+                defaultValue = "fenix/publico/genericApplications.do?method=confirmEmail&confirmationCode=")
         public String getGenericApplicationEmailConfirmationLink();
 
         @ConfigurationProperty(
                 key = "generic.application.email.recommendation.link",
-                defaultValue = "http://localhost:8080/fenix/publico/genericApplications.do?method=uploadRecommendation&confirmationCode=")
+                defaultValue = "fenix/publico/genericApplications.do?method=uploadRecommendation&confirmationCode=")
         public String getGenericApplicationEmailRecommendationLink();
 
         @ConfigurationProperty(key = "mailSender.max.recipients", defaultValue = "50")

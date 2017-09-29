@@ -1,0 +1,171 @@
+<!--
+
+    Copyright © 2002 Instituto Superior Técnico
+
+    This file is part of FenixEdu Academic.
+
+    FenixEdu Academic is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Lesser General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    FenixEdu Academic is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Lesser General Public License for more details.
+
+    You should have received a copy of the GNU Lesser General Public License
+    along with FenixEdu Academic.  If not, see <http://www.gnu.org/licenses/>.
+
+-->
+<schema name="ShowExistentPersonsDetailsBeforeGenerateUserUID" type="org.fenixedu.academic.domain.Person" bundle="MANAGER_RESOURCES">
+	<slot name="name"/>		
+	<slot name="documentIdNumber" />	
+	<slot name="idDocumentType"/>	
+	<slot name="username" layout="null-as-label" key="label.institutional.userName">
+        <property name="label" value="-"/>
+    </slot>	
+</schema>
+
+<schema name="SearchPersonAttributesToGenerateUserUID" type="org.fenixedu.academic.dto.person.PersonBean" bundle="MANAGER_RESOURCES">	
+	<slot name="username"/>	
+	<slot name="name">
+		<property name="size" value="50"/>
+	</slot>
+	<slot name="documentIdNumber" />
+</schema>
+
+<schema name="alumni.identity.request.list" type="org.fenixedu.academic.domain.AlumniIdentityCheckRequest" bundle="MANAGER_RESOURCES">
+	<slot name="creationDateTime" key="label.creationDateTime" validator="pt.ist.fenixWebFramework.renderers.validators.DateValidator" >
+		<property name="size" value="12"/>
+	</slot>
+	<slot name="fullName" key="label.fullName" validator="pt.ist.fenixWebFramework.renderers.validators.RequiredValidator" layout="link">
+		<property size="40" />
+		<property name="useParent" value="true" />
+		<property name="contextRelative" value="true" />
+		<property name="moduleRelative" value="true" />
+		<property name="linkFormat" value="/alumni.do?method=prepareIdentityValidation&amp;requestId=${externalId}&amp;personId=${alumni.student.person.externalId}"/>
+	</slot>
+	<slot name="documentIdNumber" key="label.documentIdNumber" validator="pt.ist.fenixWebFramework.renderers.validators.RequiredValidator" >
+		<property size="20" />
+	</slot>
+	<slot name="alumni.student.number" key="label.student.number" validator="pt.ist.fenixWebFramework.renderers.validators.RequiredValidator" >
+		<property size="10" />
+	</slot>
+	<slot name="contactEmail" key="label.contactEmail" validator="org.fenixedu.academic.ui.renderers.validators.RequiredEmailValidator" >
+		<property size="40" />
+	</slot>
+</schema>
+
+<schema name="alumni.identity.closed.request.list" type="org.fenixedu.academic.domain.AlumniIdentityCheckRequest" bundle="MANAGER_RESOURCES">
+	<slot name="decisionDateTime" key="label.decisionDateTime" >
+		<property name="size" value="12"/>
+	</slot>
+	<slot name="fullName" key="label.fullName" layout="link">
+		<property size="40" />
+		<property name="useParent" value="true" />
+		<property name="contextRelative" value="true" />
+		<property name="moduleRelative" value="true" />
+		<property name="linkFormat" value="/alumni.do?method=showIdentityValidation&amp;requestId=${externalId}&amp;personId=${alumni.student.person.externalId}"/>
+	</slot>
+	<slot name="documentIdNumber" key="label.documentIdNumber" >
+		<property size="20" />
+	</slot>
+	<slot name="alumni.student.number" key="label.student.number" >
+		<property size="10" />
+	</slot>
+	<slot name="contactEmail" key="label.contactEmail" >
+		<property size="40" />
+	</slot>
+	<slot name="approved" key="label.approved" >
+		<property size="40" />
+	</slot>
+</schema>
+
+<schema name="alumni.identity.request.header" type="org.fenixedu.academic.domain.AlumniIdentityCheckRequest" bundle="MANAGER_RESOURCES">
+	<slot name="requestType" key="label.requestType" >
+		<property size="40" />
+	</slot>
+	<slot name="contactEmail" key="label.contactEmail" >
+		<property size="40" />
+	</slot>
+	<slot name="documentIdNumber" key="label.documentIdNumber" >
+		<property size="20" />
+	</slot>
+	<slot name="approved" key="label.approved" layout="null-as-label" >
+		<property size="40" />
+	</slot>
+</schema>
+
+<schema name="alumni.identity.request.body" type="org.fenixedu.academic.dto.alumni.AlumniIdentityCheckRequestBean" bundle="MANAGER_RESOURCES">
+	<slot name="fullName" key="label.fullName" />
+	<slot name="dateOfBirthYearMonthDay" key="label.dateOfBirthYearMonthDay" />
+	<slot name="districtOfBirth" key="label.districtOfBirth" />
+	<slot name="districtSubdivisionOfBirth" key="label.districtSubdivisionOfBirth" />
+	<slot name="parishOfBirth" key="label.parishOfBirth" />
+	<slot name="socialSecurityNumber" key="label.socialSecurityNumber" />
+	<slot name="nameOfFather" key="label.nameOfFather" />
+	<slot name="nameOfMother" key="label.nameOfMother" />
+</schema>
+
+<schema name="alumni.identity.request.comment" type="org.fenixedu.academic.dto.alumni.AlumniIdentityCheckRequestBean" bundle="MANAGER_RESOURCES">
+	<slot name="comment" key="label.comment" layout="longText" >
+		<property name="rows" value="4" />
+		<property name="columns" value="40" />
+	</slot>
+</schema>
+
+<schema name="alumni.person.body" type="org.fenixedu.academic.domain.Person" >
+	<slot name="fullName" />
+	<slot name="dateOfBirthYearMonthDay" />
+	<slot name="districtOfBirth" />
+	<slot name="districtSubdivisionOfBirth" />
+	<slot name="parishOfBirth" />
+	<slot name="socialSecurityNumber" />
+	<slot name="nameOfFather" />
+	<slot name="nameOfMother" />
+</schema>
+
+<schema name="operator.photo.pending.list" type="org.fenixedu.academic.domain.Photograph"
+	bundle="MANAGER_RESOURCES">
+	<slot name="person" key="label.operator.photo.person.details" schema="operator.photo.photo.details">
+		<property name="classes" value="tstyle2 tdleft thright width100" />
+		<property name="columnClasses" value="width1pc nowrap,,tdclear" />
+	</slot>
+	<!--
+		Ugly, i need 2 prints of the same field with different views of it, so i used the name of an
+		unused slot and then ignored it
+	-->
+	<slot name="submission" key="label.operator.photo.submission" read-only="true" />
+	<slot name="photoType" key="label.operator.photo.current" layout="view-as-image" read-only="true">
+		<property name="classes" value="column3" />
+		<property name="useParent" value="true" />
+		<property name="moduleRelative" value="false" />
+		<property name="contextRelative" value="true" />
+		<property name="imageFormat"
+			value="/user/photo/${person.username}" />
+	</slot>
+	<slot name="externalId" key="label.operator.photo.pending" layout="view-as-image" read-only="true">
+		<property name="classes" value="column3" />
+		<property name="useParent" value="true" />
+		<property name="moduleRelative" value="false" />
+		<property name="contextRelative" value="true" />
+		<property name="imageFormat"
+			value="/person/retrievePersonalPhoto.do?method=retrievePendingByID&amp;photoCode=${externalId}" />
+	</slot>
+	<slot name="state" key="label.operator.photo.state" layout="radio">
+        <property name="excludedValues" value="USER_REJECTED" />
+	</slot>
+</schema>
+
+<schema name="operator.photo.photo.details" type="org.fenixedu.academic.domain.Person"
+	bundle="MANAGER_RESOURCES">
+	<slot name="user.username" key="label.operator.photo.person.username" read-only="true" />
+	<slot name="name" read-only="true" />
+	<slot name="dateOfBirthYearMonthDay" read-only="true" />
+	<slot name="gender" read-only="true" />
+</schema>
+
+<schema name="operator.contacts.PartyContactValidation" type="org.fenixedu.academic.domain.contacts.PartyContactValidation" bundle="APPLICATION_RESOURCES">
+	
+</schema>
